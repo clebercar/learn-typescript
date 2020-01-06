@@ -13,9 +13,9 @@ class NegotiationController {
         event.preventDefault();
 
         const negotiation = new Negotiation(
-            this._inputDate.value,
-            this._inputQuantity.value,
-            this._inputValue.value
+            new Date(this._inputDate.value.replace(/-/g, ',')),
+            parseInt(this._inputQuantity.value),
+            parseFloat(this._inputValue.value)
         );
 
         console.log(negotiation);
