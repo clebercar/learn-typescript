@@ -4,7 +4,8 @@
         "outDir": "app/js",
         "noEmitOnError": true,
         "noImplicitAny": true,
-        "removeComments": true
+        "removeComments": true,
+        "module": "System"
     },
     "include": [
         "app/ts/**/*"
