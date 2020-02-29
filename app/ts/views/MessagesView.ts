@@ -1,6 +1,6 @@
 class MessagesView extends View<string> {
     update(model: string): void {
-        this._element.innerHTML = this.template(model);
+        this._element.html(this.template(model));
     }
 
     template(model: string): string {
