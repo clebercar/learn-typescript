@@ -4,6 +4,7 @@ class NegotiationController {
     private _inputValue: HTMLInputElement;
     private _negotiations = new Negotiations();
     private _negotiationsView = new NegotiationsView('#negotiationsView');
+    private _messagesView = new MessagesView('#mensagemView');
 
     constructor() {
         this._inputDate = <HTMLInputElement>document.querySelector('#data');
@@ -31,5 +32,6 @@ class NegotiationController {
         })
 
         this._negotiationsView.update(this._negotiations);
+        this._messagesView.update('Negociação adicionada com sucesso!');
     }
 }
