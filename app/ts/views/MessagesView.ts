@@ -1,4 +1,6 @@
-class MessagesView extends View<string> {
+import { View } from './View';
+
+export class MessagesView extends View<string> {
     update(model: string): void {
         this._element.html(this.template(model));
     }
