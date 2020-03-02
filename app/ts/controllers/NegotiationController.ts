@@ -1,4 +1,5 @@
 import { NegotiationsView, MessagesView } from '../views/index';
+import { Negotiations, Negotiation } from '../models/index';
 import { domInject } from '../helpers/decorators/index';
 
 export class NegotiationController {
