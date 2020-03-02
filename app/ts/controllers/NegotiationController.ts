@@ -42,6 +42,27 @@ export class NegotiationController {
         this._messagesView.update('Negociação adicionada com sucesso!');
     }
 
+    importData() {
+        function isOk(res: Response) {
+                if(res.ok) {
+                    return res
+                } else {
+                    throw new Error(res.statusText)
+                }
+            }
+
+            fetch('http://localhost:8080/dados')
+                .then(res => isOk(res))
+                .then(response => response.json())
+                .then((datas: any[]) => {
+                    datas.map(data => new Negotiation(new Date(), data.vezes, data.montante))
+                        .forEach(negotitation => this._negotiations.add(negotitation))
+
+                    this._negotiationsView.update(this._negotiations)
+                })
+                .catch(err => console.error(err.message))
+    }
+
     private _isUtilDay(date: Date) {
         return date.getDay() != Weekday.Sunday && date.getDay() != Weekday.Saturday
     }
