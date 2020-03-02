@@ -1,10 +1,17 @@
 import { NegotiationsView, MessagesView } from '../views/index';
-import { Negotiations, Negotiation } from '../models/index';
+import { domInject } from '../helpers/decorators/index';
 
 export class NegotiationController {
+
+    @domInject('#data')
     private _inputDate: JQuery;
+
+    @domInject('#quantidade')
     private _inputQuantity: JQuery;
+
+    @domInject('#valor')
     private _inputValue: JQuery;
+
     private _negotiations = new Negotiations();
     private _negotiationsView = new NegotiationsView('#negotiationsView');
     private _messagesView = new MessagesView('#mensagemView');
