@@ -18,15 +18,17 @@ export class NegotiationController {
     private _messagesView = new MessagesView('#mensagemView');
 
     constructor() {
-        this._inputDate = $('#data');
-        this._inputQuantity = $('#quantidade');
-        this._inputValue = $('#valor');
-
         this._negotiationsView.update(this._negotiations);
     }
 
     add(event: Event){
         event.preventDefault();
+
+        let date = new Date(this._inputDate.val().replace(/-/g, ','));
+
+        if(!this._isUtilDay(date)) {
+            this._messagesView.update('Somente negociações em dias úteis.')
+        }
 
         const negotiation = new Negotiation(
             new Date(this._inputDate.val().replace(/-/g, ',')),
@@ -36,13 +38,21 @@ export class NegotiationController {
         
         this._negotiations.add(negotiation);
 
-        this._negotiations.toArray().forEach(negociation => {
-            console.log(negotiation.date)
-            console.log(negotiation.quantity)
-            console.log(negotiation.value)
-        })
-
         this._negotiationsView.update(this._negotiations);
         this._messagesView.update('Negociação adicionada com sucesso!');
     }
+
+    private _isUtilDay(date: Date) {
+        return date.getDay() != Weekday.Sunday && date.getDay() != Weekday.Saturday
+    }
+}
+
+enum Weekday {
+    Sunday,
+    Monday,
+    Tuesday,
+    Wednesday,
+    Thursday,
+    Friday,
+    Saturday
 }
